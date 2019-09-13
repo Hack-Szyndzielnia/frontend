@@ -107,6 +107,18 @@ export class AddTrailComponent implements OnInit, DoCheck, AfterViewInit {
         
     }
     
+    deleteMarkers(){
+        this.markers.length = 0;
+        this.counter = 1;
+        this.lat_start.setValue('');
+        this.long_start.setValue('');
+        this.lat_end.setValue('');
+        this.long_end.setValue('');
+        if(this.addTrailForm.status != 'VALID'){
+            this.saveAttr = true;
+        }
+    }
+    
     
 
 }
