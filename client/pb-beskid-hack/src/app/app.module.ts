@@ -21,12 +21,14 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import { ActivityListItemComponent } from './activity-list-item/activity-list-item.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { HeaderComponent } from './header/header.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule, MatIconModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { EventsListComponent } from './events-list/events-list.component';
 import { BadgesComponent } from './badges/badges.component';
+import { FriendsComponent } from './friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { BadgesComponent } from './badges/badges.component';
     ActivityListItemComponent,
     HeaderComponent,
     EventsListComponent,
-    BadgesComponent
+    BadgesComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { BadgesComponent } from './badges/badges.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
