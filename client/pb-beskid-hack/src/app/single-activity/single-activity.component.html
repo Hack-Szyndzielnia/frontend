@@ -1,7 +1,5 @@
-<div class="single-activity-container">
+<div class="single-activity-container" *ngIf="isLoaded">
   <mat-card class="example-card">
-    <!--  <div style="display: flex; flex-direction: row;">-->
-    <!--    <img mat-card-image src="{{activity.image}}" alt="Activity promo photo" style="width: 300px; height: 300px;">-->
     <mat-card-header>
       <div mat-card-avatar style="display: flex; align-items: center;">
         <i class="material-icons">{{typeIcon}}</i>
@@ -9,9 +7,7 @@
       <mat-card-title>{{activity.name}}</mat-card-title>
       <mat-card-subtitle>{{activity.desc}}</mat-card-subtitle>
     </mat-card-header>
-    <!--  </div>-->
     <mat-card-content>
-      <!--    <div style="display: flex; flex-direction: column;">-->
       <div class="map-wrapper">
         <agm-map
           [latitude]="latitude"
@@ -26,13 +22,12 @@
 
         </agm-map>
       </div>
-      <!--    </div>-->
     </mat-card-content>
     <mat-card-actions>
       <div *ngIf="activity.type === 'GPS' || activity.type === 'QR'" style="display: flex;">
         <div style="display: flex;">
           <button mat-raised-button [color]="'primary'" (click)="openInMaps()" style="align-self: flex-end;" class="button-wh">
-            Open in maps
+            Otwórz w mapach
           </button>
         </div>
         <div style="margin-left: auto;">
@@ -42,4 +37,7 @@
       </div>
     </mat-card-actions>
   </mat-card>
+</div>
+<div *ngIf="!isLoaded">
+  <app-in-progress [size]="'large'"></app-in-progress>
 </div>
