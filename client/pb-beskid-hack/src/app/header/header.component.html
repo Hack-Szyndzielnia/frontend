@@ -2,25 +2,31 @@
   <mat-sidenav-content>
     <mat-toolbar color="accent">
       <img src="../../assets/BB_logo.jpg" class="logoImage"/>
-      <span>BielskaGra.pl</span>
+      <span style="color: white">Bielska Gra Miejska</span>
     </mat-toolbar>
-    <nav mat-tab-nav-bar color="accent">
+    <nav mat-tab-nav-bar color="primary" backgroundColor="accent" >
       <a mat-tab-link
          [routerLink]="['/']"
          routerLinkActive #rla="routerLinkActive"
-         [active]="rla.isActive">
+         [active]="rla.isActive"
+         style="color: white"
+      >
         Zadania
       </a>
       <a mat-tab-link
          [routerLink]="['/']"
          routerLinkActive #rla="routerLinkActive"
-         [active]="rla.isActive">
+         [active]="rla.isActive"
+         style="color: white"
+      >
         Znajomi
       </a>
       <a mat-tab-link
          [routerLink]="['/']"
          routerLinkActive #rla="routerLinkActive"
-         [active]="rla.isActive">
+         [active]="rla.isActive"
+         style="color: white"
+      >
         Odznaki
       </a>
     </nav>
