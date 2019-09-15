@@ -22,35 +22,18 @@ export class MainComponent implements OnInit {
 
     ngOnInit() {
         
-        this.eventsList.getEvents().subscribe( res => { this.allTrails = res;
-            for(let item of res){   
-                const dateArr = item['duration']['from'];
-                const ind = dateArr.toString().indexOf('T');
-                const itemek = dateArr.toString().slice(0,ind)
-                this.dates.push( itemek ); 
-            }
+        this.spinner = true;
+        
+        this.eventsList.getEvents().subscribe( res => { 
+            setTimeout( () => {
+                 this.spinner = false;
+                 this.foundTrails = res;
+                 console.log(res)
+            },1000)
         } );
         
     }
   
-    showEvents(date){
-        
-        this.spinner = true;
-        this.foundTrails.length = 0;
-        const trails = [];
-        
-        for(let item of this.allTrails){
-            if( item['duration']['from'].indexOf(date) > -1 ){
-                trails.push(item);
-            } 
-        }
-        
-        setTimeout( () => {
-                 this.spinner = false;
-                 this.foundTrails = trails;
-        },1000)
-            
-        
-    }
+    
     
 }

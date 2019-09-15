@@ -1,26 +1,38 @@
+<mat-toolbar>Przerowodnik po mieście - BB</mat-toolbar>
+
 <div class="mainComponent">
     <h4>Lista dat wydarzeń w BB</h4>
-    <mat-form-field>
-        <mat-label>Wybierz datę wydarzeń</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let date of dates" [value]="date" (click)="showEvents(date)">
-                {{date}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
+    
 
 <div class="lista">
     <div class="spinner">
         <app-in-progress [size]="'small'" *ngIf="spinner"></app-in-progress>
     </div>    
-    <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let item of foundTrails">
-                       <span>{{item.title}}</span> &nbsp; - &nbsp;
-                       <a routerLink="eventEdit/{{item.name}}">
-                szczegóły
-            </a>
-        </mat-list-item>
-    </mat-list>
+   
+    
+    <mat-card class="example-card" style="display: flex; flex-direction: column;" *ngFor="let activity of foundTrails">
+  <div style="display: flex; justify-content: center;">
+    <img mat-card-image src="{{activity.coverImage}}" alt="Activity image" style="width: 100%; max-width: 400px; max-height: 300px; height: 100%; margin-top: 0.25rem">
+  </div>
+        <div style="display: flex; flex-direction: column;">
+            <mat-card-header>
+                <mat-card-title>
+                    <div style="display: flex; margin-bottom: 20px;">
+                        <i class="material-icons">{{icon}}</i>
+                        <span style="padding-left: 10px;">{{activity.name}}</span>
+                    </div>
+                </mat-card-title>
+                <mat-card-subtitle>{{activity.desc}}</mat-card-subtitle>
+                 
+            </mat-card-header>
+            <mat-card-actions>
+                <a routerLink="eventEdit/{{activity.name}}">
+                    Szczegóły
+                </a>
+                </mat-card-actions>   
+        </div>
+    </mat-card>
+    
 </div>
 
 
