@@ -1,0 +1,17 @@
+<mat-card *ngFor="let badge of badges">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{badge.title}}</mat-card-title>
+            <mat-card-subtitle>{{badge.duration.from}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{badge.coverImage}}" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p>
+                {{badge.desc}}
+            </p>
+        </mat-card-content>
+        
+    </mat-card>
+</mat-card>

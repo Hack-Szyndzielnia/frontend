@@ -7,6 +7,7 @@ import {MainComponent} from './main/main.component';
 import {EventListComponent} from './event-list/event-list.component';
 import {EventEditComponent} from './event-edit/event-edit.component';
 import {SingleActivityComponent} from "./single-activity/single-activity.component";
+import {BadgesComponent} from "./badges/badges.component";
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   }, {
     path: 'activity/:id/:number',
     component: SingleActivityComponent
+  }
+  , {
+    path: 'odznaki',
+    component: BadgesComponent
   }
 
 ];

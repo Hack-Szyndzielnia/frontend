@@ -26,6 +26,7 @@ import { HeaderComponent } from './header/header.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule, MatIconModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { EventsListComponent } from './events-list/events-list.component';
+import { BadgesComponent } from './badges/badges.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EventsListComponent } from './events-list/events-list.component';
     SingleActivityComponent,
     ActivityListItemComponent,
     HeaderComponent,
-    EventsListComponent
+    EventsListComponent,
+    BadgesComponent
   ],
   imports: [
     BrowserModule,
