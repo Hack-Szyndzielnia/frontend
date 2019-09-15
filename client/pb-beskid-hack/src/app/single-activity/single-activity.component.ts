@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Activity} from "../interfaces/interfaces";
 import ActivityHelper from "../helpers/ActivityHelper";
+import {ActivatedRoute, Router} from "@angular/router";
+import {EventsService} from "../events.service";
 
 @Component({
   selector: 'app-single-activity',
@@ -16,13 +18,27 @@ export class SingleActivityComponent implements OnInit {
   public longitude: number;
   public typeIcon: string;
 
-  constructor() {
+  private eventName: string;
+  private activityIndex: string;
+
+  public isLoaded = false;
+
+  constructor(private route: ActivatedRoute, private eventsService: EventsService, private router: Router) {
   }
 
   ngOnInit() {
-    this.latitude = this.activity.local.lat;
-    this.longitude = this.activity.local.lng;
-    this.typeIcon = ActivityHelper.getIconBasedOnType(this.activity.type);
+    console.log(this.route.snapshot.paramMap);
+    this.eventName = this.route.snapshot.paramMap.get("id");
+    this.activityIndex = this.route.snapshot.paramMap.get("number");
+
+    this.eventsService.getEventDetails(this.eventName)
+      .subscribe(eventDetails => {
+        this.activity = eventDetails.steps[this.activityIndex];
+        this.latitude = this.activity.local.lat;
+        this.longitude = this.activity.local.lng;
+        this.typeIcon = ActivityHelper.getIconBasedOnType(this.activity.type);
+        this.isLoaded = true;
+      });
   }
 
   public openInMaps() {
@@ -33,6 +49,10 @@ export class SingleActivityComponent implements OnInit {
     } else {
       window.open(`https://maps.google.com/maps?daddr=${this.latitude},${this.longitude}&amp;ll=`);
     }
+  }
+
+  public routeToEvent() {
+    this.router.navigate(['eventEdit', this.eventName]);
   }
 
 

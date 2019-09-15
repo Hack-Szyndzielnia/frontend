@@ -4,10 +4,25 @@
       <img src="../../assets/BB_logo.jpg" class="logoImage"/>
       <span>BielskaGra.pl</span>
     </mat-toolbar>
-    <mat-tab-group mat-align-tabs="center" color="accent">
-      <mat-tab label="Zadania"></mat-tab>
-      <mat-tab label="Znajomi"></mat-tab>
-      <mat-tab label="Odznaki"></mat-tab>
-    </mat-tab-group>
+    <nav mat-tab-nav-bar color="accent">
+      <a mat-tab-link
+         [routerLink]="['/']"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        Zadania
+      </a>
+      <a mat-tab-link
+         [routerLink]="['/']"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        Znajomi
+      </a>
+      <a mat-tab-link
+         [routerLink]="['/']"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        Odznaki
+      </a>
+    </nav>
   </mat-sidenav-content>
 </mat-sidenav-container>

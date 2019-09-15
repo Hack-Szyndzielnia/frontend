@@ -4,8 +4,8 @@
 </div>
 <div *ngIf="eventDetails">
   <mat-toolbar [color]="'accent'">
-    {{eventDetails.event.name}}
+    {{eventDetails.event.title}}
   </mat-toolbar>
-  <app-activity-list-item *ngFor="let activity of eventDetails.steps" [activity]="activity">
+  <app-activity-list-item *ngFor="let activity of eventDetails.steps; let i = index;" [activity]="activity" [index]="i" [eventName]="eventDetails.event.name">
   </app-activity-list-item>
 </div>
