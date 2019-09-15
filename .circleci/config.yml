@@ -1,0 +1,66 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+orbs:
+  aws-s3: circleci/aws-s3@1.0.11
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.16
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "client/pb-beskid-hack/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: cd client/pb-beskid-hack && npm install
+      - run: cd client/pb-beskid-hack && npm run build
+
+      - save_cache:
+          paths:
+            - client/pb-beskid-hack/node_modules
+          key: v1-dependencies-{{ checksum "client/pb-beskid-hack/package.json" }}
+
+      - save_cache:
+          paths:
+            - client/pb-beskid-hack/dist
+          key: source-v1-{{ .Branch }}-{{ .Revision }}
+  deploy:
+    docker:
+      - image: circleci/python:3.6.2-stretch-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - source-v1-{{ .Branch }}-{{ .Revision }}
+            - source-v1-{{ .Branch }}-
+      - run:
+          name: Installing dependencies.
+          command: sudo pip install awscli
+      - deploy:
+          name: Deploy to S3 if branch is Master.
+          command: aws s3 sync ~/repo/client/pb-beskid-hack/dist/pb-beskid-hack s3://hackathon.mwojtowicz.it/ --delete
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
