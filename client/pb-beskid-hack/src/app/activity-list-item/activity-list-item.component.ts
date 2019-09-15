@@ -15,11 +15,12 @@ export class ActivityListItemComponent implements OnInit {
   @Input()
   public index: number;
   @Input()
-  public eventName: string
+  public eventName: string;
 
   public icon: string;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router) {
+  }
 
   ngOnInit() {
     this.icon = ActivityHelper.getIconBasedOnType(this.activity.type);
@@ -33,4 +34,7 @@ export class ActivityListItemComponent implements OnInit {
     this.router.navigate(['activity', this.eventName, this.index]);
   }
 
+  getButtonText() {
+    return this.isComplete() ? "Już zrobiłeś!" : " Zobacz";
+  }
 }
