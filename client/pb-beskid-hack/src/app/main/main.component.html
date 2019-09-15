@@ -1,15 +1,13 @@
-<mat-toolbar>Przerowodnik po mieście - BB</mat-toolbar>
-
 <div class="mainComponent">
     <h4>Lista dat wydarzeń w BB</h4>
-    
+
 
 <div class="lista">
     <div class="spinner">
         <app-in-progress [size]="'small'" *ngIf="spinner"></app-in-progress>
-    </div>    
-   
-    
+    </div>
+
+
     <mat-card class="example-card" style="display: flex; flex-direction: column;" *ngFor="let activity of foundTrails">
   <div style="display: flex; justify-content: center;">
     <img mat-card-image src="{{activity.coverImage}}" alt="Activity image" style="width: 100%; max-width: 400px; max-height: 300px; height: 100%; margin-top: 0.25rem">
@@ -23,16 +21,16 @@
                     </div>
                 </mat-card-title>
                 <mat-card-subtitle>{{activity.desc}}</mat-card-subtitle>
-                 
+
             </mat-card-header>
             <mat-card-actions>
                 <button routerLink="eventEdit/{{activity.name}}" mat-button>Więcej</button>
-                </mat-card-actions>   
+            </mat-card-actions>   
         </div>
     </mat-card>
-    
+
 </div>
 
 
-</div>    
+</div>
 

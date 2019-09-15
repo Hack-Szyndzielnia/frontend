@@ -6,6 +6,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MainComponent } from './main/main.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventEditComponent } from './event-edit/event-edit.component';
+import { EventsListComponent } from "./events-list/events-list.component";
 
 const routes: Routes = [
     {

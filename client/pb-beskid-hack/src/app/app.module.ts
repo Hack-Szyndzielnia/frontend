@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatListModule} from "@angular/material/list";
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { MainComponent } from './main/main.component';
 import { EventListComponent } from './event-list/event-list.component';
@@ -20,6 +21,12 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import { ActivityListItemComponent } from './activity-list-item/activity-list-item.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTabsModule} from '@angular/material/tabs';
+
+import { HeaderComponent } from './header/header.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { EventsListComponent } from './events-list/events-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     EventEditComponent,
     InProgressComponent,
     SingleActivityComponent,
-    ActivityListItemComponent
+    ActivityListItemComponent,
+    HeaderComponent,
+    EventsListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +51,14 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     AgmCoreModule,
     MatCardModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
