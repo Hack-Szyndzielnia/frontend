@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Activity} from "../interfaces/interfaces";
+import ActivityHelper from "../helpers/ActivityHelper";
 
 @Component({
   selector: 'app-single-activity',
@@ -21,20 +22,7 @@ export class SingleActivityComponent implements OnInit {
   ngOnInit() {
     this.latitude = this.activity.local.lat;
     this.longitude = this.activity.local.lng;
-
-    switch (this.activity.type) {
-      case "GPS":
-        this.typeIcon = "gps_fixed";
-        break;
-      case "QR":
-        this.typeIcon = "camera_alt";
-        break;
-      case "SOCIAL":
-        this.typeIcon = "share";
-        break;
-      default:
-        this.typeIcon = "event";
-    }
+    this.typeIcon = ActivityHelper.getIconBasedOnType(this.activity.type);
   }
 
   public openInMaps() {

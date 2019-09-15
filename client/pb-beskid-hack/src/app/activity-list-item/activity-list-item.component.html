@@ -1,0 +1,25 @@
+<!--<div style="display: flex; flex-direction: row;" class="activity-item">-->
+<!--  <div class="activity-header">-->
+<!--    <img src="{{activity.image}}" alt="Activity image" style="width: 300px; height: 300px;"/>-->
+<!--  </div>-->
+<!--  <div class="activity-content">-->
+<!--    <p>{{activity.name}}</p>-->
+<!--    <p>{{activity.desc}}</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<mat-card class="example-card" style="display: flex; flex-direction: row;">
+  <div>
+    <img mat-card-image src="{{activity.image}}" alt="Activity image" style="width: 400px; height: 300px;">
+  </div>
+  <div style="display: flex; flex-direction: column; padding-left: 2rem;">
+    <mat-card-header>
+      <mat-card-title>
+        <i class="material-icons">{{icon}}</i>
+        {{activity.name}}
+      </mat-card-title>
+      <mat-card-subtitle>{{activity.desc}}</mat-card-subtitle>
+    </mat-card-header>
+  </div>
+</mat-card>

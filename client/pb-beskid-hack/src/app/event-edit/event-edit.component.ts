@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {EventsService} from "../events.service";
+import {BeskidEventDetails} from "../interfaces/interfaces";
 
 @Component({
   selector: 'app-event-edit',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventEditComponent implements OnInit {
 
-  constructor() { }
+  public eventId: string;
+  public eventDetails: BeskidEventDetails;
+
+  constructor(private route: ActivatedRoute, private eventService: EventsService) { }
 
   ngOnInit() {
+    this.eventId = this.route.snapshot.paramMap.get("id");
+    this.eventService.getEventDetails(this.eventId)
+      .subscribe(eventDetails => {
+        this.eventDetails = eventDetails;
+      });
   }
 
 }

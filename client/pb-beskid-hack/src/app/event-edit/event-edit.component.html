@@ -1,3 +1,11 @@
-<p>
-  event-edit works!
-</p>
+<div *ngIf="!eventDetails" style="display: flex; flex-direction: row;">
+  <app-in-progress [size]="'small'"></app-in-progress>
+  <p>Loading event {{this.eventId}}...</p>
+</div>
+<div *ngIf="eventDetails">
+  <mat-toolbar [color]="'accent'">
+    {{eventDetails.event.name}}
+  </mat-toolbar>
+  <app-activity-list-item *ngFor="let activity of eventDetails.steps" [activity]="activity">
+  </app-activity-list-item>
+</div>

@@ -12,7 +12,7 @@ export interface Duration {
 }
 
 export interface BeskidEventDetails {
-  event: any;
+  event: BeskidEvent;
   steps: Activity[];
 }
 

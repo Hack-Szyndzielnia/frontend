@@ -18,6 +18,8 @@ import { SingleActivityComponent } from './single-activity/single-activity.compo
 import {AgmCoreModule} from "@agm/core";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import { ActivityListItemComponent } from './activity-list-item/activity-list-item.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {MatButtonModule} from "@angular/material/button";
     EventListComponent,
     EventEditComponent,
     InProgressComponent,
-    SingleActivityComponent
+    SingleActivityComponent,
+    ActivityListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatProgressSpinnerModule,
     AgmCoreModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
