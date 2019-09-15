@@ -10,9 +10,6 @@ import { EventsService } from '../events.service';
 export class MainComponent implements OnInit {
     
     dates = [
-        '2019-09-09T00:00:00+0200',
-        '2020-02-01T00:00:00+0200',
-        '2019-09-01T00:00:00+0200'
     ];
     
     spinner : boolean = false;
@@ -25,7 +22,14 @@ export class MainComponent implements OnInit {
 
     ngOnInit() {
         
-        this.eventsList.getEvents().subscribe( res => { this.allTrails = res; } )
+        this.eventsList.getEvents().subscribe( res => { this.allTrails = res;
+            for(let item of res){   
+                const dateArr = item['duration']['from'];
+                const ind = dateArr.toString().indexOf('T');
+                const itemek = dateArr.toString().slice(0,ind)
+                this.dates.push( itemek ); 
+            }
+        } );
         
     }
   
@@ -36,7 +40,7 @@ export class MainComponent implements OnInit {
         const trails = [];
         
         for(let item of this.allTrails){
-            if(date == item['duration']['from']){
+            if( item['duration']['from'].indexOf(date) > -1 ){
                 trails.push(item);
             } 
         }
