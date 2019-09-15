@@ -26,7 +26,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes),
   AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB9Eh0f0EmQDr8dG4im1E1FBXJhwwcZgTc'
+      apiKey: 'AIzaSyDUcBYc-o790SS7zrViOsnk-3oGBbgJdmo'
     })],
   exports: [RouterModule]
 })

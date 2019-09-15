@@ -11,6 +11,11 @@ export interface Duration {
   to: Date;
 }
 
+export interface BeskidEventDetails {
+  event: any;
+  steps: Activity[];
+}
+
 export interface Activity {
   name: string;
   desc: string;

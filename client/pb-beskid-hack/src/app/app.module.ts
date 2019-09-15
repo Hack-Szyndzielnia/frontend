@@ -14,6 +14,10 @@ import { EventEditComponent } from './event-edit/event-edit.component';
 import {InProgressComponent} from "./in-progress/in-progress.component";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {HttpClientModule} from "@angular/common/http";
+import { SingleActivityComponent } from './single-activity/single-activity.component';
+import {AgmCoreModule} from "@agm/core";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import {HttpClientModule} from "@angular/common/http";
     MainComponent,
     EventListComponent,
     EventEditComponent,
-    InProgressComponent
+    InProgressComponent,
+    SingleActivityComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,10 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     MatListModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AgmCoreModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
