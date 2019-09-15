@@ -20,12 +20,11 @@ import {AgmCoreModule} from "@agm/core";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import { ActivityListItemComponent } from './activity-list-item/activity-list-item.component';
-import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTabsModule} from '@angular/material/tabs';
 
 import { HeaderComponent } from './header/header.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatSidenavModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { EventsListComponent } from './events-list/events-list.component';
 
 @NgModule({
