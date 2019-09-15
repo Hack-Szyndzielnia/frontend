@@ -30,11 +30,7 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     MatListModule,
     MatSelectModule,
-<<<<<<< Updated upstream
     MatProgressSpinnerModule
-=======
-    MatTableModule
->>>>>>> Stashed changes
   ],
   providers: [],
   bootstrap: [AppComponent]
