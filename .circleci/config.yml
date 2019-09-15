@@ -26,9 +26,8 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: cd client/pb-beskid-hack
-      - run: npm install
-      - run: npm run build
+      - run: cd client/pb-beskid-hack && npm install
+      - run: cd client/pb-beskid-hack && npm run build
 
       - save_cache:
           paths:
