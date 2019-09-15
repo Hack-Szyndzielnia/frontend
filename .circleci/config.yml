@@ -55,6 +55,7 @@ jobs:
       - deploy:
           name: Deploy to S3 if branch is Master.
           command: aws s3 sync ~/repo/client/pb-beskid-hack/dist/pb-beskid-hack s3://hackathon.mwojtowicz.it/ --delete
+      - run: aws cloudfront create-invalidation --distribution-id E2CXOU60TT4XGB --paths "/*"
 
 workflows:
   version: 2
