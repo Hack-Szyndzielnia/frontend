@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { EventsService } from '../events.service';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -8,45 +10,43 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
     
     dates = [
-        '01-09-2019 - 08-09-2019',
-        '08-09-2019 - 15-09-2019',
-        '15-09-2019 - 22-09-2019',
-        '22-09-2019 - 29-09-2019'
+        '2019-09-09T00:00:00+0200',
+        '2020-02-01T00:00:00+0200',
+        '2019-09-01T00:00:00+0200'
     ];
     
-    private events = [
-        { 
-            'date' : '01-09-2019 - 08-09-2019',
-            'name' : 'trail1',
-            'id' : 1
-        },
-        { 
-            'date' : '01-09-2019 - 08-09-2019',
-            'name' : 'trail2',
-            'id' : 2
-        }
-    ]
-    
+    spinner : boolean = false;
+    allTrails = [];
     foundTrails = [];
     
     
     
-    constructor() { }
+    constructor(private eventsList: EventsService) { }
 
     ngOnInit() {
+        
+        this.eventsList.getEvents().subscribe( res => { this.allTrails = res; } )
+        
     }
   
     showEvents(date){
         
-        this.foundTrails = this.events.map( item => {
-            return date == item['date'] ? item : { 'name' : '' }; 
-        });
+        this.spinner = true;
+        this.foundTrails.length = 0;
+        const trails = [];
         
+        for(let item of this.allTrails){
+            if(date == item['duration']['from']){
+                trails.push(item);
+            } 
+        }
         
-    
-        console.log(this.foundTrails);
+        setTimeout( () => {
+                 this.spinner = false;
+                 this.foundTrails = trails;
+        },1000)
+            
+        
     }
     
-    
-
 }

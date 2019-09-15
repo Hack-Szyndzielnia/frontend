@@ -9,16 +9,18 @@
     </mat-select>
 </mat-form-field>
 
-<mat-list role="list" *ngIf="foundTrails.length > 0">
-    <mat-list-item role="listitem" *ngFor="let item of foundTrails">
-        {{item.name}}
-        <a routerLink="eventEdit/{{item.id}}">
-            szczegóły
-        </a>
-    </mat-list-item>
-</mat-list>
-    
-       
+<div class="lista">
+    <app-in-progress [size]="'small'" *ngIf="spinner"></app-in-progress>
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let item of foundTrails">
+                       <span>{{item.title}}</span> &nbsp; - &nbsp;
+                       <a routerLink="eventEdit/{{item.name}}">
+                szczegóły
+            </a>
+        </mat-list-item>
+    </mat-list>
+</div>
+
 
 </div>    
 
