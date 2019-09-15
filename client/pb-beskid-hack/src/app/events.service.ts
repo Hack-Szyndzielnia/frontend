@@ -23,9 +23,28 @@ export class EventsService {
     return this.http.get<BeskidEventDetails>(`${this.URL}/${name}`)
       .pipe(
         map(event => {
+          return {...event,  steps: event.steps.map(act => ({
+              ...act, status: this.getActivityStatus(event.event.name, act.name)
+            }))};
+        }),
+        map(event => {
           return {...event, steps: event.steps.sort(this.activitySorter)};
         })
       );
+  }
+
+  public completeActivity(eventName: string, activityName: string) {
+    let completed: any = localStorage.getItem('completed') || "{}";
+    completed = JSON.parse(completed);
+    completed[eventName] = {[activityName]: 1};
+    localStorage.setItem('completed', JSON.stringify(completed));
+  }
+
+  private getActivityStatus(eventName: string, activityName: string): "NOT" | "COMPLETED" {
+    let completed: any = localStorage.getItem('completed') || "{}";
+    completed = JSON.parse(completed);
+    const event: any = completed[eventName] || {};
+    return event[activityName] ? "COMPLETED" : "NOT";
   }
 
   private activitySorter(a: Activity, b: Activity): number {

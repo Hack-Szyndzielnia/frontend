@@ -7,8 +7,30 @@
       <mat-card-title>{{activity.name}}</mat-card-title>
       <mat-card-subtitle>{{activity.desc}}</mat-card-subtitle>
     </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <div *ngIf="activity.type === 'GPS' || activity.type === 'QR'" style="display: flex;">
+        <div style="display: flex;">
+          <button mat-raised-button [color]="'primary'" (click)="openInMaps()" style="align-self: flex-end;" class="button-wh">
+            Otwórz w mapach
+          </button>
+        </div>
+        <div style="margin-left: auto;">
+          <p>Jesteś w okolicy?</p>
+          <button mat-raised-button [color]="'accent'" class="button-wh" (click)="finishActivity()">Zamelduj się!</button>
+        </div>
+      </div>
+      <div *ngIf="activity.type !== 'GPS' && activity.type !== 'QR'" style="display: flex; flex-direction: row;">
+        <button mat-raised-button [color]="'accent'" class="button-wh" style="margin-left: auto !important;" (click)="shareThis()">
+          <i class="material-icons">
+            share
+          </i>
+          Podziel się
+        </button>
+      </div>
+    </mat-card-actions>
     <mat-card-content>
-      <div class="map-wrapper">
+      <div class="map-wrapper" *ngIf="!isWithoutMap">
         <agm-map
           [latitude]="latitude"
           [longitude]="longitude"
@@ -23,19 +45,6 @@
         </agm-map>
       </div>
     </mat-card-content>
-    <mat-card-actions>
-      <div *ngIf="activity.type === 'GPS' || activity.type === 'QR'" style="display: flex;">
-        <div style="display: flex;">
-          <button mat-raised-button [color]="'primary'" (click)="openInMaps()" style="align-self: flex-end;" class="button-wh">
-            Otwórz w mapach
-          </button>
-        </div>
-        <div style="margin-left: auto;">
-          <p>Jesteś w okolicy?</p>
-          <button mat-raised-button [color]="'accent'" class="button-wh">Zamelduj się!</button>
-        </div>
-      </div>
-    </mat-card-actions>
   </mat-card>
 </div>
 <div *ngIf="!isLoaded">

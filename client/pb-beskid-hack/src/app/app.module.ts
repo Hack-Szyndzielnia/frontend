@@ -29,6 +29,7 @@ import { MatSidenavModule, MatIconModule, MatPaginatorModule, MatSortModule } fr
 import { EventsListComponent } from './events-list/events-list.component';
 import { BadgesComponent } from './badges/badges.component';
 import { FriendsComponent } from './friends/friends.component';
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { FriendsComponent } from './friends/friends.component';
     MatPaginatorModule,
     MatSortModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

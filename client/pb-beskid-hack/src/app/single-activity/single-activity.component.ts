@@ -23,6 +23,8 @@ export class SingleActivityComponent implements OnInit {
 
   public isLoaded = false;
 
+  public isWithoutMap = true;
+
   constructor(private route: ActivatedRoute, private eventsService: EventsService, private router: Router) {
   }
 
@@ -34,8 +36,13 @@ export class SingleActivityComponent implements OnInit {
     this.eventsService.getEventDetails(this.eventName)
       .subscribe(eventDetails => {
         this.activity = eventDetails.steps[this.activityIndex];
-        this.latitude = this.activity.local.lat;
-        this.longitude = this.activity.local.lng;
+
+        this.isWithoutMap = !(this.activity.local && this.activity.local.lat && this.activity.local.lng);
+
+        if (!this.isWithoutMap) {
+          this.latitude = this.activity.local.lat;
+          this.longitude = this.activity.local.lng;
+        }
         this.typeIcon = ActivityHelper.getIconBasedOnType(this.activity.type);
         this.isLoaded = true;
       });
@@ -53,6 +60,84 @@ export class SingleActivityComponent implements OnInit {
 
   public routeToEvent() {
     this.router.navigate(['eventEdit', this.eventName]);
+  }
+
+  private getLocation(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition.bind(this));
+    }
+  }
+
+  private showPosition(location): void {
+    console.log(location);
+    const currentLat = location.coords.latitude;
+    const currentLng = location.coords.longitude;
+    console.log(SingleActivityComponent.LatLngDist(currentLat, this.latitude, currentLng, this.longitude));
+  }
+
+  public finishActivity(): void {
+    this.eventsService.completeActivity(this.eventName, this.activity.name);
+    this.router.navigate(["eventEdit", this.eventName]);
+  }
+
+  public static distance(lat1, lon1, lat2, lon2, unit?) {
+    if ((lat1 === lat2) && (lon1 === lon2)) {
+      return 0;
+    } else {
+      const radlat1 = Math.PI * lat1 / 180;
+      const radlat2 = Math.PI * lat2 / 180;
+      const theta = lon1 - lon2;
+      const radtheta = Math.PI * theta / 180;
+      let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = dist * 180 / Math.PI;
+      dist = dist * 60 * 1.1515;
+      if (unit === "K") { dist = dist * 1.609344; }
+      if (unit === "N") { dist = dist * 0.8684; }
+      return dist;
+    }
+  }
+
+  public static LatLngDist( lat1, lng1, lat2, lng2 ) {
+    console.log(lat1,  lng1,  lat2,  lng2);
+
+    // Convert Degress to Radians
+    function Deg2Rad(deg) {
+      return deg * Math.PI / 180;
+    }
+
+    function PythagorasEquirectangular(lati1, lon1, lati2, lon2) {
+      lati1 = Deg2Rad(lati1);
+      lati2 = Deg2Rad(lati2);
+      lon1 = Deg2Rad(lon1);
+      lon2 = Deg2Rad(lon2);
+      const R = 6371; // km
+      // const R = 3959; // miles
+      const x = (lon2 - lon1) * Math.cos((lati1 + lati2) / 2);
+      const y = (lati2 - lati1);
+      const d = Math.sqrt(x * x + y * y) * R;
+      return d;
+    }
+
+    return PythagorasEquirectangular( lat1, lng1, lat2, lng2 );
+  }
+
+  public shareThis() {
+    const url = window.location.href;
+    /**
+     * <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
+     Share on Facebook
+     </a>
+     */
+    const ref = document.createElement("a");
+    ref.setAttribute("href", `https://www.facebook.com/sharer/sharer.php?u=${url}`);
+    ref.setAttribute("target", "_blank");
+    document.body.appendChild(ref);
+    ref.click();
+    document.body.removeChild(ref);
   }
 
 
