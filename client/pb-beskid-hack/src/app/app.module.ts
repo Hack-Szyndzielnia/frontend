@@ -12,6 +12,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventEditComponent } from './event-edit/event-edit.component';
 import {InProgressComponent} from "./in-progress/in-progress.component";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatListModule,
     MatSelectModule,
