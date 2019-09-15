@@ -7,6 +7,7 @@ import {MainComponent} from './main/main.component';
 import {EventListComponent} from './event-list/event-list.component';
 import {EventEditComponent} from './event-edit/event-edit.component';
 import {SingleActivityComponent} from "./single-activity/single-activity.component";
+import { FriendsComponent } from './friends/friends.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'eventList',
     component: EventListComponent
+  },
+  {
+    path: 'friends',
+    component: FriendsComponent
   },
   {
     path: 'eventEdit/:id',
