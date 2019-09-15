@@ -9,18 +9,18 @@ export class BadgesComponent implements OnInit {
     
     badges = [
         {
-            coverImage: "http://images-bbdays4it-hack.s3-website.eu-central-1.amazonaws.com/bbdays/logo.png",
-            desc: "W tym tygodniu w bielsku rządzi informatyka! Czeka na Ciebie mnóstwo atrakcji związanych z lokalnymi firmami informatycznymi",
+            coverImage: "assets/bolek.png",
+            desc: "W tym tygodniu podążamy szlakiem Bolka i Lolka",
             duration: {from: "2019-09-09", to: "2019-09-15"},
             name: "bbdays4it",
-            title: "Konferencja BBDays4.it"
+            title: "Tydzień z Bolkiem i Lolkiem"
         },
         {
-            coverImage: "http://images-bbdays4it-hack.s3-website.eu-central-1.amazonaws.com/zadymka/logo.png",
-            desc: "Jazz opanował Bielsko, czeka na Ciebie mnóstwo muzycznych atrakcji",
+            coverImage: "assets/reksio.png",
+            desc: "Poznajmy historię Reksia w Bielsku-Białej",
             duration: {from: "2020-02-01", to: "2020-02-14"},
             name: "zadymka-jazzowa",
-            title: "Bielska zadymka jazzowa 2020"
+            title: "Śladami Reksia"
         }
     ];
     
