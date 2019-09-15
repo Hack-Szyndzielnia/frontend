@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatListModule} from "@angular/material/list";
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 import { MainComponent } from './main/main.component';
 import { EventListComponent } from './event-list/event-list.component';
@@ -29,7 +30,11 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     MatListModule,
     MatSelectModule,
+<<<<<<< Updated upstream
     MatProgressSpinnerModule
+=======
+    MatTableModule
+>>>>>>> Stashed changes
   ],
   providers: [],
   bootstrap: [AppComponent]

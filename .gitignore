@@ -26,3 +26,4 @@ npm-debug.log
 # System Files
 .DS_Store
 Thumbs.db
+/client/pb-beskid-hack/nbproject/private/
