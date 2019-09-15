@@ -10,20 +10,24 @@ import {MatSelectModule} from '@angular/material/select';
 import { MainComponent } from './main/main.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventEditComponent } from './event-edit/event-edit.component';
+import {InProgressComponent} from "./in-progress/in-progress.component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     EventListComponent,
-    EventEditComponent
+    EventEditComponent,
+    InProgressComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
